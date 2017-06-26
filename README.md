@@ -10,3 +10,5 @@ an  asyn loading tool for html
      });
  </script>
 ````
+#note
+this js file can be used on mobile(ios and android) but not support those browsers which does not support 'async' attr in script 
