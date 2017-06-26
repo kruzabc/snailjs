@@ -1,55 +1,15 @@
 /**
- Snail JS
- version : 0.9
- note : not support broswer <= IE 8(script async)
- example :
- // snail.js('jquery','mui',function(){
- //     alert('load success');
- // });
+    Snail JS
+    version : 0.9
  */
+
 window.snail_conf = {
-    mode : 'release', /*todo 0 for 线上 ;1 for 开发*/
-    js_prefix : '/js/',// app是'js/' web是'/js/'
     js: {
-        jquery: 'jquery-1.11.2.min.js',
-        fastclick: 'fastclick.min.js',
-        cookie: 'cookie.js',
-        echarts: 'echarts.min.js',
-        fontSize: 'fontSize.js',
-        'grid9-lottery': 'grid9-lottery.min.js',
-        share: 'share.js',
-        selectTab: 'selectTab.js'
-    },
-    js_release:{
-        common: 'common.js',
-        common_s: 'common_s.js',
-        mui: 'mui.min.js',
-        'mui.previewimage': 'mui.previewimage.js',
-        'mui.pullToRefresh': 'mui.pullToRefresh.js',
-        'mui.zoom': 'mui.zoom.js',
-        swiper: 'swiper.min.js',
-        promotion_utils : "../promotion/js/promotion_utils.js"
+        jquery: 'http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js',
+        fastclick: 'http://apps.bdimg.com/libs/fastclick/1.0.0/fastclick.js',
+        cookie: 'http://apps.bdimg.com/libs/Cookies.js/0.4.0/cookies.min.js'
     }
 };
-
-//fontSize
-(function (doc, win) {
-    var docEl = doc.documentElement,
-        resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
-        recalc = function () {
-            var clientWidth = docEl.clientWidth;
-            if (!clientWidth) return;
-            if (clientWidth > 768) {
-                clientWidth = 768
-            }
-            docEl.style.fontSize = 100 * (clientWidth / 750) + 'px';
-        };
-    // Abort if browser does not support addEventListener
-    if (!doc.addEventListener) return;
-    win.addEventListener(resizeEvt, recalc, false);
-    doc.addEventListener('DOMContentLoaded', recalc, false);
-})(document, window);
-
 
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
@@ -90,13 +50,8 @@ window.snail_conf = {
     };
 
     function matchJsPath(id) {
-        var conf = window.snail_conf,_url = null;
-        if (conf.mode == 'release') {/*线上*/ /*线上找不到就找开发*/
-            _url = conf.js_release[id] || conf.js[id];
-        } else {
-            _url = conf.js[id];
-        }
-        return _url ? conf.js_prefix + _url : id;
+        var conf = window.snail_conf, _url = conf.js[id];
+        return _url ?  _url : id;
     }
 
     function loadFinished(script) {
