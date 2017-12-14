@@ -15,10 +15,11 @@ window.snail_conf = {
     typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
         typeof define === 'function' && define.amd ? define(factory) :
             (global.snail = factory());
-})(this, function () { 'use strict';
-    var snail = {};
-    var scripts = [];
-    var finishCallback = null;
+})(this, function () { 
+    'use strict';
+    var snail = {},
+        scripts = [],
+        finishCallback = null;
     snail.js = function () {
         var args = arguments;
         var frag = document.createDocumentFragment();
